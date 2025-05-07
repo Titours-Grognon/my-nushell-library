@@ -21,11 +21,11 @@ use output-script.nu *
 #| *PUBLIC* |#
 #+----------+#
 
-# External control of nu
+# External control of nu commands
 export def __external-command-control [
-    external_command: string
-    control_command: string = "standard"
-    shell?: string = "bash"
+    external_command:   string
+    control_command:    string = "standard" # Control option: continue (allows to continue script execution in case of error), debug or standard
+    shell?:             string = "bash"
 ] {
 
     if not ($control_command in ["continue" "debug" "standard"]) {

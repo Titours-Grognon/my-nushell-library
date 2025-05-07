@@ -20,7 +20,6 @@ use output-script.nu *
 #+----------+#
 
 # Get parameters from a toml file
-# Depends : output-script
 export def __get-settings [
     table?: string              # Extract collection of key/value pairs
     --settings_file: path = ""  # Configuration file in TOML format

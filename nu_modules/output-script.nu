@@ -20,7 +20,7 @@
 # Generate a style log message to display and/or log
 export def __display-message [
     level?: string  # Message level : alert, debug, error, info, successful_script, successful_step
-    msg?: string    # Message to display
+    msg?:   string  # Message to display
     ] {
     print (
         match $level {
