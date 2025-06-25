@@ -26,12 +26,12 @@ export def __get-settings [
 ] {
 
     if ($settings_file | is-empty) {
-        __display-message-script error $"No settings files"
+        __display-message error $"No settings files"
         return false
     }
 
     if (($settings_file | path type) != "file") {
-        __display-message-script error $"($settings_file) not found"
+        __display-message error $"($settings_file) not found"
         return false
     }
 
@@ -39,14 +39,14 @@ export def __get-settings [
         try {
             open $settings_file
         } catch {|error|
-            __display-message-script error $"($error.msg)"
+            __display-message error $"($error.msg)"
             false
         }
     } else {
         try {
             open $settings_file | get $table
         } catch {|error|
-            __display-message-script error $"($error.msg)"
+            __display-message error $"($error.msg)"
             false
         }
     }

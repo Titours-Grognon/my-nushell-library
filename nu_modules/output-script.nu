@@ -24,13 +24,13 @@ export def __display-message [
     ] {
     print (
         match $level {
-            "alert"             => $'(ansi reset)(ansi bg_b) 🚨 (ansi yb)(date now | format date "%F %T") - ($msg)(ansi reset)'
-            "debug"             => $'(ansi reset)(ansi bg_b) 🧐 (ansi wb)(date now | format date "%F %T") - ($msg)(ansi reset)'
-            "error"             => $'(ansi reset)(ansi bg_b) 💥 (ansi rb)(date now | format date "%F %T") - ($msg)(ansi reset)'
-            "info"              => $'(ansi reset)(ansi bg_b) 💬 (ansi wi)(ansi bo)(date now | format date "%F %T") - ($msg)(ansi reset)'
-            "successful_script" => $'(ansi reset)(ansi bg_b) 🎉 (ansi gb)(date now | format date "%F %T") - ($msg)(ansi reset)'
-            "successful_step"   => $'(ansi reset)(ansi bg_b) ✅ (ansi gb)(date now | format date "%F %T") - ($msg)(ansi reset)'
-            _                   => $"(ansi reset)(ansi bg_b) 📬 You have a message ?(ansi reset)"
+            "alert"             => $'(ansi reset)(ansi bg_k) 🚨 (ansi yb)(date now | format date "%F %T") - ($msg)(ansi reset)'
+            "debug"             => $'(ansi reset)(ansi bg_k) 🧐 (ansi wb)(date now | format date "%F %T") - ($msg)(ansi reset)'
+            "error"             => $'(ansi reset)(ansi bg_k) 💥 (ansi rb)(date now | format date "%F %T") - ($msg)(ansi reset)'
+            "info"              => $'(ansi reset)(ansi bg_k) 💬 (ansi wi)(ansi bo)(date now | format date "%F %T") - ($msg)(ansi reset)'
+            "successful_script" => $'(ansi reset)(ansi bg_k) 🎉 (ansi gb)(date now | format date "%F %T") - ($msg)(ansi reset)'
+            "successful_step"   => $'(ansi reset)(ansi bg_k) ✅ (ansi gb)(date now | format date "%F %T") - ($msg)(ansi reset)'
+            _                   => $"(ansi reset)(ansi bg_k) 📬 ($msg)(ansi reset)"
         }
     )
 }
@@ -40,5 +40,5 @@ export def __line-separator [
     separator_character = '-'
 ] {
     let line = ('' | fill --character $"($separator_character)" --width 80)
-    print ($"(ansi reset)(ansi bg_b)(ansi mb)($line)(ansi reset)")
+    print ($"(ansi reset)(ansi bg_k)(ansi mb)($line)(ansi reset)")
 }

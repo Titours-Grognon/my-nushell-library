@@ -56,4 +56,4 @@ const file_hierarchy = if (($bin_path | path parse | get stem) == "bin") {
 #| *IMPORT* |#
 #+----------+#
 
-use ($file_hierarchy | get modules_path) *
+# use $"(($file_hierarchy | get modules_path) | path join <module-name>)" *
