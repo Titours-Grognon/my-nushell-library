@@ -115,7 +115,7 @@ Flags:
 
 Parameters:
   external_command <string>
-  control_command <string>: Control option: continue (allows to continue script execution in case of error), debug or standard (optional, default: 'standard')
+  control_command <string>: Control option: analyze (allows to process data return), continue (allows to continue script execution in case of error), debug or standard (optional, default: 'standard')
   shell <string>:  (optional, default: 'bash')
 
 Input/output types:

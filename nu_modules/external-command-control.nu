@@ -24,16 +24,20 @@ use output-script.nu *
 # External control of nu commands
 export def __external-command-control [
     external_command:   string
-    control_command:    string = "standard" # Control option: continue (allows to continue script execution in case of error), debug or standard
+    control_command:    string = "standard" # Control option: analyze (allows to process data return), continue (allows to continue script execution in case of error), debug or standard
     shell?:             string = "bash"
 ] {
 
-    if not ($control_command in ["continue" "debug" "standard"]) {
+    if not ($control_command in ["analyze" "continue" "debug" "standard"]) {
         __display-message error "Control parameter not managed"
         exit 1
     }
     
     let external_command_result = run-external "/usr/bin/env" $shell "-c" $external_command | complete
+
+    if ($control_command == "analyze") {
+        return (command-analyze $external_command $external_command_result)
+    }
 
     if ($control_command == "debug") {
         return (command-debug $external_command $external_command_result)
@@ -49,6 +53,14 @@ export def __external-command-control [
 #+-----------+#
 #| *PRIVATE* |#
 #+-----------+#
+
+def command-analyze [
+    external_command: string
+    external_command_result: record
+]: nothing -> record {
+    __display-message "external_command"
+    $external_command_result
+}
 
 def command-debug [
     external_command: string
