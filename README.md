@@ -58,18 +58,19 @@ Librairie permettant de gérer l'affichage dans les scripts.
 1. `__display-message`
 
     ```txt
-    Generate a style log message to display and/or log
-    
+    Generate a message with or without timestamp to display or log 
+
     Usage:
-      > __display-message (level) (msg) 
-    
+      > __display-message {flags} <msg> 
+
     Flags:
+      --level <string>: Message level : alert, debug, error, info, successful_script, successful_step
+      --log: Add timestamp
       -h, --help: Display the help message for this command
-    
+
     Parameters:
-      level <string>: Message level : alert, debug, error, info, successful_script, successful_step (optional)
-      msg <string>: Message to display (optional)
-    
+      msg <string>: Message to display
+
     Input/output types:
       ╭───┬───────┬────────╮
       │ # │ input │ output │
@@ -78,19 +79,21 @@ Librairie permettant de gérer l'affichage dans les scripts.
       ╰───┴───────┴────────╯
     ```
 
-1. `__line-separator`
+1. `__display-horizontal-rule
 
     ```txt
-    Generate a line separator
+    Generate a horizontal rule
 
     Usage:
-      > __line-separator (separator_character) 
+      > __display-horizontal-rule {flags} (separator_character) 
 
     Flags:
+      --bg <string>: Background color (default: 'bg_k')
+      --fg <string>: Foreground color (default: 'lmb')
       -h, --help: Display the help message for this command
 
     Parameters:
-      separator_character <string>:  (optional, default: '-')
+      separator_character <string>: Horizontal bar (optional, default: '―')
 
     Input/output types:
       ╭───┬───────┬────────╮

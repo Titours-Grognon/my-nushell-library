@@ -29,7 +29,7 @@ export def __external-command-control [
 ] {
 
     if not ($control_command in ["analyze" "continue" "debug" "standard"]) {
-        __display-message error "Control parameter not managed"
+        __display-message --level error "Control parameter not managed"
         exit 1
     }
     
@@ -58,7 +58,7 @@ def command-analyze [
     external_command: string
     external_command_result: record
 ]: nothing -> record {
-    __display-message "external_command"
+    __display-message $external_command
     $external_command_result
 }
 
@@ -66,13 +66,13 @@ def command-debug [
     external_command: string
     external_command_result: record
 ] {
-    __display-message info $external_command    
-    __display-message info $"Return code: ($external_command_result.exit_code)"
+    __display-message --level info $external_command    
+    __display-message --level info $"Return code: ($external_command_result.exit_code)"
     if ($external_command_result.stdout | is-not-empty) {
-        __display-message debug $"Stdout:\n($external_command_result.stdout)"
+        __display-message --level debug $"Stdout:\n($external_command_result.stdout)"
     }
     if ($external_command_result.stderr | is-not-empty) {
-        __display-message debug $"Stderr:\n($external_command_result.stderr)"
+        __display-message --level debug $"Stderr:\n($external_command_result.stderr)"
     }
 }
 
@@ -81,9 +81,9 @@ def command-stop [
     external_command_result: record
     control_command: string
 ] {
-    __display-message alert $external_command
-    __display-message error "Not properly execution of the external command"
-    __display-message debug $"($external_command_result.stderr)"
+    __display-message --level alert $external_command
+    __display-message --level error "Not properly execution of the external command"
+    __display-message --level debug $"($external_command_result.stderr)"
     if ($control_command != "continue") {
         exit 1
     }
@@ -93,6 +93,6 @@ def command-success [
     external_command: string
     external_command_result: record
 ] {
-    __display-message info $external_command    
-    __display-message successful_step "Execution successfully"
+    __display-message --level info $external_command    
+    __display-message --level successful_step "Execution successfully"
 }
