@@ -21,30 +21,36 @@ use output-script.nu *
 #| *PUBLIC* |#
 #+----------+#
 
-# External control of nu commands
+# Run an external command based on a mode :
+# 
+# - analyze     (allows to process data return)
+# - continue    (allows to continue script execution in case of error)
+# - debug       (display all information)
+# - quiet       (no information, except in case of error)
+# - standard    (display command success or failure)
 export def __external-command-control [
-    external_command:   string
-    control_command:    string = "standard" # Control option: analyze (allows to process data return), continue (allows to continue script execution in case of error), debug or standard
-    shell?:             string = "bash"
+    external_command: string    # Command to execute
+    --mode: string = "standard" # Mode option: analyze, continue, debug, quiet or standard
+    --shell: string = "bash"    # Command line interpreter
 ] {
 
-    if not ($control_command in ["analyze" "continue" "debug" "standard"]) {
+    if not ($mode in ["analyze" "continue" "debug" "quiet" "standard"]) {
         __display-message --level error "Control parameter not managed"
         exit 1
     }
     
     let external_command_result = run-external "/usr/bin/env" $shell "-c" $external_command | complete
 
-    if ($control_command == "analyze") {
+    if ($mode == "analyze") {
         return (command-analyze $external_command $external_command_result)
     }
 
-    if ($control_command == "debug") {
+    if ($mode == "debug") {
         return (command-debug $external_command $external_command_result)
     }
    
     if ($external_command_result.exit_code != 0) {
-        command-stop $external_command $external_command_result $control_command
+        command-stop $external_command $external_command_result $mode
     } else {
         command-success $external_command $external_command_result
     }
@@ -73,18 +79,19 @@ def command-debug [
     }
     if ($external_command_result.stderr | is-not-empty) {
         __display-message --level debug $"Stderr:\n($external_command_result.stderr)"
+        exit 1
     }
 }
 
 def command-stop [
     external_command: string
     external_command_result: record
-    control_command: string
+    mode: string
 ] {
     __display-message --level alert $external_command
     __display-message --level error "Not properly execution of the external command"
     __display-message --level debug $"($external_command_result.stderr)"
-    if ($control_command != "continue") {
+    if ($mode != "continue") {
         exit 1
     }
 }

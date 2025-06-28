@@ -27,7 +27,7 @@ __display-horizontal-rule
 
 __display-message --level info ("Test: unknown control mode" | str upcase)
 
-let test_control_mode_unknown = do --ignore-errors {nu -c "use ../external-command-control.nu; external-command-control __external-command-control 'ls' 'mode'"} | complete
+let test_control_mode_unknown = do --ignore-errors {nu -c "use ../external-command-control.nu; external-command-control __external-command-control 'ls' --mode 'mode'"} | complete
 print $test_control_mode_unknown
 
 assert equal $test_control_mode_unknown.exit_code 1
@@ -38,7 +38,7 @@ __display-horizontal-rule
 
 __display-message --level info ("Test: valid command in debug mode" | str upcase)
 
-let test_control_mode_debug_with_valid_command = do --ignore-errors {nu -c "use ../external-command-control.nu; external-command-control __external-command-control 'ls' 'debug'"} | complete
+let test_control_mode_debug_with_valid_command = do --ignore-errors {nu -c "use ../external-command-control.nu; external-command-control __external-command-control 'ls' --mode 'debug'"} | complete
 print $test_control_mode_debug_with_valid_command
 
 assert equal $test_control_mode_debug_with_valid_command.exit_code 0
@@ -49,10 +49,10 @@ __display-horizontal-rule
 
 __display-message --level info ("Test: not valid command in debug mode" | str upcase)
 
-let test_control_mode_debug_with_not_valid_command = do --ignore-errors {nu -c "use ../external-command-control.nu; external-command-control __external-command-control 'ls --not-valid-parameter' 'debug'"} | complete
+let test_control_mode_debug_with_not_valid_command = do --ignore-errors {nu -c "use ../external-command-control.nu; external-command-control __external-command-control 'ls --not-valid-parameter' --mode 'debug'"} | complete
 print $test_control_mode_debug_with_not_valid_command
 
-assert equal $test_control_mode_debug_with_not_valid_command.exit_code 0
+assert equal $test_control_mode_debug_with_not_valid_command.exit_code 1
 
 __display-message --level successful_step "Test: not valid command in debug mode"
 

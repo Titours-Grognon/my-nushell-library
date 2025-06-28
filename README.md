@@ -108,18 +108,24 @@ Librairie permettant de gérer l'affichage dans les scripts.
 Librairie permettant de l'exécution et le retour des commandes externes au shell *Nushell*.
 
 ```txt
-External control of nu commands
+Run an external command based on a mode :
+
+- analyze     (allows to process data return)
+- continue    (allows to continue script execution in case of error)
+- debug       (display all information)
+- quiet       (no information, except in case of error)
+- standard    (display command success or failure)
 
 Usage:
-  > __external-command-control <external_command> (control_command) (shell) 
+  > __external-command-control {flags} <external_command> 
 
 Flags:
+  --mode <string>: Mode option: analyze, continue, debug, quiet or standard (default: 'standard')
+  --shell <string>: Command line interpreter (default: 'bash')
   -h, --help: Display the help message for this command
 
 Parameters:
-  external_command <string>
-  control_command <string>: Control option: analyze (allows to process data return), continue (allows to continue script execution in case of error), debug or standard (optional, default: 'standard')
-  shell <string>:  (optional, default: 'bash')
+  external_command <string>: Command to execute
 
 Input/output types:
   ╭───┬───────┬────────╮
