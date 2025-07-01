@@ -113,7 +113,6 @@ Run an external command based on a mode :
 - analyze     (allows to process data return)
 - continue    (allows to continue script execution in case of error)
 - debug       (display all information)
-- quiet       (no information, except in case of error)
 - standard    (display command success or failure)
 
 Usage:

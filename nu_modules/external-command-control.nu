@@ -26,7 +26,6 @@ use output-script.nu *
 # - analyze     (allows to process data return)
 # - continue    (allows to continue script execution in case of error)
 # - debug       (display all information)
-# - quiet       (no information, except in case of error)
 # - standard    (display command success or failure)
 export def __external-command-control [
     external_command: string    # Command to execute
@@ -34,7 +33,7 @@ export def __external-command-control [
     --shell: string = "bash"    # Command line interpreter
 ] {
 
-    if not ($mode in ["analyze" "continue" "debug" "quiet" "standard"]) {
+    if not ($mode in ["analyze" "continue" "debug" "standard"]) {
         __display-message --level error "Control parameter not managed"
         exit 1
     }
@@ -64,7 +63,6 @@ def command-analyze [
     external_command: string
     external_command_result: record
 ]: nothing -> record {
-    __display-message $external_command
     $external_command_result
 }
 
