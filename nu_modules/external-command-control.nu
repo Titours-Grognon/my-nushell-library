@@ -29,7 +29,7 @@ use output-script.nu *
 # - standard    (display command success or failure)
 export def __external-command-control [
     external_command: string    # Command to execute
-    --mode: string = "standard" # Mode option: analyze, continue, debug, quiet or standard
+    --mode: string = "standard" # Mode option: analyze, continue, debug or standard
     --shell: string = "bash"    # Command line interpreter
 ] {
 
