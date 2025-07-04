@@ -3,6 +3,7 @@
 - [🎉 **MY-NUSHELL-LIBRARY** 🎉](#-my-nushell-library-)
   - [Objectifs 🚩](#objectifs-)
   - [Script de base `minimal.nu`](#script-de-base-minimalnu)
+    - [Aide](#aide)
   - [Librairies](#librairies)
     - [`output-script.nu`](#output-scriptnu)
     - [`external-command.nu`](#external-commandnu)
@@ -48,6 +49,28 @@ Script de base pouvant s'adapter à deux modes de fonctionnenment :
         ├── [...]
         └── module-<zzz>.nu
   ```
+
+### Aide
+
+```txt
++--------------------+#
+| Script description |#
++--------------------+#
+
+Usage:
+  > minimal.nu {flags} 
+
+Flags:
+  --show_env: Show script configuration environment
+  -h, --help: Display the help message for this command
+
+Input/output types:
+  ╭───┬───────┬────────╮
+  │ # │ input │ output │
+  ├───┼───────┼────────┤
+  │ 0 │ any   │ any    │
+  ╰───┴───────┴────────╯
+```
 
 ## Librairies
 
