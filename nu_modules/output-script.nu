@@ -30,13 +30,13 @@ export def __display-message [
 
     print (
         match $level {
-            "alert"             => $'(ansi reset)(ansi bg_k) 🚨 (ansi yb)($timestamp) - ($msg) (ansi reset)'
-            "debug"             => $'(ansi reset)(ansi bg_k) 🧐 (ansi wr)($timestamp) - ($msg) (ansi reset)'
-            "error"             => $'(ansi reset)(ansi bg_k) 💥 (ansi rb)($timestamp) - ($msg) (ansi reset)'
-            "info"              => $'(ansi reset)(ansi bg_k) 💬 (ansi wb)($timestamp) - ($msg) (ansi reset)'
-            "successful_script" => $'(ansi reset)(ansi bg_k) 🎉 (ansi gb)($timestamp) - ($msg) (ansi reset)'
-            "successful_step"   => $'(ansi reset)(ansi bg_k) ✅ (ansi gb)($timestamp) - ($msg) (ansi reset)'
-            _                   => $'(ansi reset)(ansi bg_k) 📬 (ansi wi)($timestamp) - ($msg) (ansi reset)'
+            "alert"             => $"(ansi reset)(ansi bg_k) 🚨 (ansi yb)($timestamp) - ($msg) (ansi reset)"
+            "debug"             => $"(ansi reset)(ansi bg_k) 🧐 (ansi wr)($timestamp) - ($msg) (ansi reset)"
+            "error"             => $"(ansi reset)(ansi bg_k) 💥 (ansi rb)($timestamp) - ($msg) (ansi reset)"
+            "info"              => $"(ansi reset)(ansi bg_k) 💬 (ansi wb)($timestamp) - ($msg) (ansi reset)"
+            "successful_script" => $"(ansi reset)(ansi bg_k) 🎉 (ansi gb)($timestamp) - ($msg) (ansi reset)"
+            "successful_step"   => $"(ansi reset)(ansi bg_k) ✅ (ansi gb)($timestamp) - ($msg) (ansi reset)"
+            _                   => $"(ansi reset)(ansi bg_k) 📬 (ansi wi)($timestamp) - ($msg) (ansi reset)"
         }
     )
 }

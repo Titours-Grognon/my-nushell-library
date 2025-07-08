@@ -62,7 +62,7 @@ use $file_hierarchy.modules_path
 #| Script description |#
 #+--------------------+#
 def main [
-    --show_env  # Show script configuration environment
+    --show-env  # Show script configuration environment
 ] {
     if $show_env {
         __display-horizontal-rule

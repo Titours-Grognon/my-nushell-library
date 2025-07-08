@@ -61,7 +61,7 @@ Usage:
   > minimal.nu {flags} 
 
 Flags:
-  --show_env: Show script configuration environment
+  --show-env: Show script configuration environment
   -h, --help: Display the help message for this command
 
 Input/output types:
